@@ -5,6 +5,13 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
+  stage('Verify Java & Maven') {
+    steps {
+        sh 'java -version'
+        sh 'mvn -version'
+    }
+  }
+
   stages {
     stage('Checkout') {
       steps {
