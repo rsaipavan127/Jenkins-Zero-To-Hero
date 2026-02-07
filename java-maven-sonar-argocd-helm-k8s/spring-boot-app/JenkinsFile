@@ -10,11 +10,14 @@ pipeline {
 
   stages {
     stage('Checkout') {
-      steps {
-        sh 'echo passed'
-        git branch: 'main', url: 'https://github.com/rsaipavan127/Jenkins-Zero-To-Hero.git'
+        steps {
+          sh 'echo passed'
+          checkout scmGit(
+            branches: [[name: '*/main']], 
+            userRemoteConfigs: [[url: 'https://github.com/rsaipavan127/Jenkins-Zero-To-Hero.git']]
+          )
+        }
       }
-    }
     stage('Verify Java & Maven') {
     steps {
         sh 'java -version'
