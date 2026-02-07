@@ -5,12 +5,7 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
-  stage('Verify Java & Maven') {
-    steps {
-        sh 'java -version'
-        sh 'mvn -version'
-    }
-  }
+  
 
   stages {
     stage('Checkout') {
@@ -19,6 +14,12 @@ pipeline {
         //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
       }
     }
+    stage('Verify Java & Maven') {
+    steps {
+        sh 'java -version'
+        sh 'mvn -version'
+    }
+  }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
